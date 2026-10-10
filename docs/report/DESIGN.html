@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>데일리롤 — Benchmark</title>
+<title>데일리롤 — Design</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <style>
   :root {
@@ -316,145 +316,345 @@
 <body>
 <div class="layout">
 
-    <aside class="sidebar">
+  <aside class="sidebar">
     <div class="brand">데일리롤<small>Vibe Studio</small></div>
     <ul class="nav">
       <li class="nav-group">기획 문서</li>
       <li><a href="PRODUCT.html"><span class="step">1</span>Product</a></li>
+      <li><a href="BENCHMARK.html"><span class="step">2</span>Benchmark</a></li>
+      <li><a href="VOICE.html"><span class="step">3</span>Voice</a></li>
       <li class="is-current">
-        <a href="benchmark.html"><span class="step">2</span>Benchmark</a>
+        <a href="DESIGN.html"><span class="step">4</span>Design</a>
         <ul class="toc">
-          <li><a href="#conclusion">결론</a></li>
-          <li><a href="#landscape">경쟁 서비스</a></li>
-          <li><a href="#screens">화면 캡처</a></li>
-          <li><a href="#compare">기능 비교</a></li>
-          <li><a href="#observations">관찰</a></li>
-          <li><a href="#sources">출처</a></li>
+          <li><a href="#theme">분위기</a></li>
+          <li><a href="#color">색</a></li>
+          <li><a href="#boundaries">쓰는 곳</a></li>
+          <li><a href="#type">글꼴</a></li>
+          <li><a href="#shape">간격·모양</a></li>
+          <li><a href="#preview">미리보기</a></li>
+          <li><a href="#deps">라이브러리</a></li>
+          <li><a href="#dos">Do · Don't</a></li>
+          <li><a href="#voice">보이스</a></li>
         </ul>
       </li>
-      <li><a href="VOICE.html"><span class="step">3</span>Voice</a></li>
-      <li><a href="DESIGN.html"><span class="step">4</span>Design</a></li>
-      <li class="is-pending"><a href="FLOWS.html"><span class="step">5</span>Flows</a></li>
+      <li><a href="FLOWS.html"><span class="step">5</span>Flows</a></li>
     </ul>
   </aside>
 
   <main>
     <header class="cover">
-      <div class="eyebrow">Benchmark</div>
-      <h1>차곡</h1>
-      <p class="lead">"사진으로 습관 기록"은 이미 존재하고(Momentum 등), "습관 그리드·공유 카드"도 따로 존재하지만(Goal4), <strong>여러 습관을 한 장의 사진 타일 보드로 보고 → 월간 공유 이미지로 내보내는</strong> 조합은 확인된 서비스가 없다. 단, 대부분 iOS 앱이라 웹이라는 점도 차이다.</p>
+      <div class="eyebrow">Design</div>
+      <h1>데일리롤</h1>
+      <p class="lead">사진이 색을 담당하도록, 흰 바탕에 초록 하나만 아껴 쓰는 조용한 사진관 같은 화면이에요.</p>
       <div class="meta">
-        <span class="tag">조사일 2026-10-10</span>
-        <span class="tag">직접 경쟁 4 · 간접·참고 4</span>
+        <span class="tag">데일리롤 (Daily Roll) Design System</span>
+        <span class="tag">레퍼런스: Banksalad Reference Design System (뱅크샐러드)</span>
+        <span class="tag">2026-10-10</span>
       </div>
     </header>
 
-    <section class="section" id="conclusion">
-      <div class="section-label">Conclusion</div>
-      <h2>우리의 자리</h2>
-      <div class="callout">
-        <p class="big">사진 타일 보드로 여러 습관의 한 주·한 달을 한눈에 돌아보고 인스타에 올릴 수 있는, 습관 기록과 회고용 사진 그리드 서비스.</p>
-        <dl class="kv">
-          <dt>빈틈 · 기회</dt><dd>사진 습관 앱은 개별 습관 저널·영상으로, 그리드 앱은 사진 없이 색 칸으로만 간다. "습관 × 기간 사진 보드 + 인스타 공유 카드"는 비어 있다. 쉬는 날·체크만 한 날처럼 주기가 다른 습관을 칸 상태로 구분하는 것도 확인되지 않았다. 대부분 iOS 앱이라 웹이라는 접근성도 틈이다.</dd>
-          <dt>차별 포인트</dt><dd>① 습관 × 기간 사진 타일 보드(칸 상태 구분 포함) ② 월간 공유 카드. 사진을 쌓는 기능 자체는 경쟁이 이미 갖고 있으니 보드 설계와 공유 결과물의 완성도로 승부한다.</dd>
-        </dl>
+    <section class="section" id="theme">
+      <div class="section-label">Theme</div>
+      <h2>분위기</h2>
+      <p>습관마다 칸을 사진으로 채우고 한 주와 한 달을 돌아보는 모바일 우선 웹 서비스예요. 흰 바탕 <code>#ffffff</code>, 짙은 글자 <code>#111111</code>, 초록 <code>#13bd7e</code> 하나로 화면을 조용하게 잡아요.</p>
+      <p>서비스가 칸에 일어난 일만 담담하게 말하는 만큼, 화면도 사진과 경쟁하지 않아요. 초록은 의도적으로 아껴 쓰고, 더 진한 <code>#06a96c</code>는 전폭 주요 버튼에만 써요.</p>
+      <p>모서리는 역할마다 달라요. 칩 6px, 버튼 16px, 컨테이너 24px예요. 글꼴은 Pretendard 하나만 써요. 이 값들은 뱅크샐러드 레퍼런스에서 측정한 그대로 유지했어요.</p>
+    </section>
+
+    <section class="section" id="color">
+      <div class="section-label">Color</div>
+      <h2>색</h2>
+      <h3 class="sub">브랜드</h3>
+      <div class="swatches">
+    <div class="swatch">
+      <i class="chip-color" style="background:#13bd7e"></i>
+      <strong>accent</strong>
+      <code>#13bd7e</code>
+      <span class="note">화면당 하나, 선택·활성 상태</span>
+    </div>
+    <div class="swatch">
+      <i class="chip-color" style="background:#06a96c"></i>
+      <strong>accent-strong</strong>
+      <code>#06a96c</code>
+      <span class="note">전폭 주요 버튼 배경 (흰 글자)</span>
+    </div>
+      </div>
+      <h3 class="sub">배경 · 표면</h3>
+      <div class="swatches">
+    <div class="swatch">
+      <i class="chip-color" style="background:#ffffff"></i>
+      <strong>canvas</strong>
+      <code>#ffffff</code>
+      <span class="note">기본 바탕과 카드 면</span>
+    </div>
+    <div class="swatch">
+      <i class="chip-color" style="background:rgba(19,189,126,0.15)"></i>
+      <strong>chip-fill</strong>
+      <code>rgba(19,189,126,0.15)</code>
+      <span class="note">필터 칩 배경 (accent 15%)</span>
+    </div>
+      </div>
+      <h3 class="sub">글자</h3>
+      <div class="swatches">
+    <div class="swatch">
+      <i class="chip-color" style="background:#111111"></i>
+      <strong>foreground</strong>
+      <code>#111111</code>
+      <span class="note">제목과 본문</span>
+    </div>
+    <div class="swatch">
+      <i class="chip-color" style="background:#555c68"></i>
+      <strong>secondary</strong>
+      <code>#555c68</code>
+      <span class="note">보조 설명</span>
+    </div>
+    <div class="swatch">
+      <i class="chip-color" style="background:#606874"></i>
+      <strong>neutral</strong>
+      <code>#606874</code>
+      <span class="note">안내 문구</span>
+    </div>
+    <div class="swatch">
+      <i class="chip-color" style="background:#9fa4b0"></i>
+      <strong>muted</strong>
+      <code>#9fa4b0</code>
+      <span class="note">부가 메타데이터</span>
+    </div>
+      </div>
+      <h3 class="sub">선</h3>
+      <div class="swatches">
+    <div class="swatch">
+      <i class="chip-color" style="background:#f0f2f5"></i>
+      <strong>line</strong>
+      <code>#f0f2f5</code>
+      <span class="note">카드 테두리 1px</span>
+    </div>
+      </div>
+      <h3 class="sub">상태 (임시)</h3>
+      <div class="swatches">
+    <div class="swatch">
+      <i class="chip-color" style="background:#fe493d"></i>
+      <strong>error</strong>
+      <code>#fe493d</code>
+      <span class="note">실제 오류에만. 상태 팔레트는 아직 미확정</span>
+    </div>
+      </div>
+      <h3 class="sub">쓰지 않는 색</h3>
+      <div class="swatches">
+    <div class="swatch">
+      <i class="chip-color" style="background:#877af5"></i>
+      <strong>carousel-purple</strong>
+      <code>#877af5</code>
+      <span class="note">레퍼런스 캐러셀 전용</span>
+    </div>
+    <div class="swatch">
+      <i class="chip-color" style="background:#ffbe4c"></i>
+      <strong>carousel-yellow</strong>
+      <code>#ffbe4c</code>
+      <span class="note">레퍼런스 캐러셀 전용</span>
+    </div>
       </div>
     </section>
 
-    <section class="section" id="landscape">
-      <div class="section-label">Landscape</div>
-      <h2>경쟁·참고 서비스</h2>
-      <div class="sub">직접 경쟁</div>
-      <div class="table-wrap"><table>
-<thead><tr><th>서비스</th><th>한 줄 포지셔닝</th><th>타깃</th><th>가격</th></tr></thead>
-<tbody>
-<tr><th><a href="https://apps.apple.com/us/app/photo-habit-tracker-momentum/id6746295673">Photo habit tracker | Momentum</a></th><td>습관을 완료할 때마다 사진을 찍어 쌓는 "비주얼 습관 저널". 주간·월간 리캡, 영상 리캡</td><td>사진으로 습관을 기록하려는 iPhone 사용자</td><td>무료 + 인앱결제(Pro 구독, Lifetime $14.99)</td></tr>
-<tr><th><a href="https://apps.apple.com/in/app/habitmirror-photo-journal/id6746387795">HabitMirror - Photo Journal</a></th><td>사진 체크인으로 쌓이는 포토 타임라인과 습관 캘린더</td><td>일지·운동·독서 등 루틴을 사진으로 남기려는 사용자</td><td>무료 + 인앱결제(월 $4.99 / 연 $40.99, 지역별 상이)</td></tr>
-<tr><th><a href="https://subscribed.fyi/blog/folksable-3-photo-habit-tracker-for-accountability/">Folksable</a></th><td>친구에게 사진으로 습관 인증을 공유하는 책임감 중심 앱</td><td>친구와 함께 습관을 지키려는 사용자</td><td>별도 확인 필요</td></tr>
-<tr><th><a href="https://apps.apple.com/app/id6756763855">Habit Tracker &amp; Streaks: Goal4</a></th><td>습관별 기여 그리드(히트맵)와 스트릭, 통계 카드 공유</td><td>사진 없이 숫자·그리드로 습관을 보려는 사용자</td><td>무료 + 인앱결제(Pro 주 $0.99 / 연 $9.99)</td></tr>
-</tbody></table></div>
-      <div class="sub">간접 경쟁 · 참고</div>
-      <div class="table-wrap"><table>
-<thead><tr><th>서비스</th><th>왜 참고하는가</th><th>겹치는 지점</th></tr></thead>
-<tbody>
-<tr><th><a href="https://apps.apple.com/app/id587823548">1 Second Everyday (1SE)</a></th><td>날짜별로 사진·영상 한 조각씩 채우는 캘린더형 일기. 빠진 날을 카메라 롤에서 채우는 방식</td><td>날짜 칸에 사진 채우기, 과거 날짜 보충</td></tr>
-<tr><th><a href="https://apps.apple.com/app/id1021405859">Leap Second</a></th><td>카메라 롤의 사진·영상이 캘린더에 자동으로 채워짐</td><td>촬영 날짜 기반 자동 배치</td></tr>
-<tr><th><a href="https://apps.apple.com/kr/app/%EC%8A%A4%ED%83%AC%ED%94%BD-%EC%82%AC%EC%A7%84-%EA%B8%B0%EB%A1%9D-%ED%83%80%EC%9E%84%EC%8A%A4%ED%83%AC%ED%94%84-%EC%B9%B4%EB%A9%94%EB%9D%BC/id6756785730">타임스탬프 인증 카메라 (스탬픽 등)</a></th><td>PRODUCT.md가 언급한 "사진 기록" 계열. 사진에 날짜·시간을 입히고 운동·음식 등으로 분류</td><td>사진 기록 자체 (습관 보드·주기 개념은 없음)</td></tr>
-<tr><th><a href="https://www.techloy.com/how-habit-tiles-can-change-your-life/">Habit Tiles</a></th><td>이름에 '타일'이 들어간 습관 앱. 루틴 묶음·알림·AI 코치 중심</td><td>습관 묶어보기 (타일 화면 구성은 출처에서 확인 안 됨)</td></tr>
-</tbody></table></div>
-    </section>
-
-    <section class="section" id="screens">
-      <div class="section-label">Screens</div>
-      <h2>핵심 경쟁 화면</h2>
-      <div class="shots is-mobile">
-  <figure class="shot">
-    <img src="images/momentum-appstore.png" alt="Momentum · 앱스토어 소개">
-    <figcaption>
-      <strong>Momentum · 앱스토어 소개</strong>
-      <p>스크린샷에 "Your week, in one glance"라는 카피와 함께 "Workout 3x weekly" 습관의 한 주 사진이 격자로 깔린 화면이 있다. 격자 아래에 달성 점(●) 줄이 붙는다. 차곡의 주간 마무리와 가장 가까운 화면. "Always private. Stored in your iCloud." 카피로 프라이버시를 전면에 내세움. 오렌지 톤의 따뜻한 분위기. iPhone 전용으로 표기</p>
-      <p class="source"><a href="https://apps.apple.com/us/app/photo-habit-tracker-momentum/id6746295673">apps.apple.com</a> · 2026-10-10</p>
-    </figcaption>
-  </figure>
-  <figure class="shot">
-    <img src="images/goal4-appstore.png" alt="Goal4 · 앱스토어 소개">
-    <figcaption>
-      <strong>Goal4 · 앱스토어 소개</strong>
-      <p>아이콘부터 점 그리드이고, 화면 캡처에는 습관별 가로 띠에 분홍 칸이 촘촘히 채워진 모습이 보인다. 차곡이 노리는 "습관별 가로 띠" 구조와 시각적으로 가장 비슷하지만 사진은 없고 색 칸뿐. "No ads, all data on-device" 카피</p>
-      <p class="source"><a href="https://apps.apple.com/app/id6756763855">apps.apple.com</a> · 2026-10-10</p>
-    </figcaption>
-  </figure>
-</div>
-      <p>두 서비스 모두 별도 웹 서비스가 아닌 iOS 앱이라, 로그인 없이 URL로 볼 수 있는 화면은 앱스토어 소개 페이지뿐이었다. 앱 내부 화면은 앱스토어 스크린샷 속 모습만 관찰했고 직접 써 보지는 못했다.</p>
-    </section>
-
-    <section class="section" id="compare">
-      <div class="section-label">Compare</div>
-      <h2>핵심 기능 비교</h2>
-      <p>PRODUCT.md의 핵심 기능을 기준으로 정리했다. 출처는 각 앱스토어 소개 페이지이며, "—"는 소개 페이지에서 확인되지 않은 항목이다.</p>
-      <div class="table-wrap"><table>
-<thead><tr><th>기능/측면</th><th>차곡 (계획)</th><th>Momentum</th><th>HabitMirror</th><th>Goal4</th><th>1SE</th></tr></thead>
-<tbody>
-<tr><th>사진으로 습관 기록</th><td>사진첩 선택이 주, 바로 찍기도</td><td>촬영이 기본, 기존 사진 추가 가능(v1.929)</td><td>촬영 체크인 중심</td><td>없음</td><td>사진·영상 조각</td></tr>
-<tr><th>사진 날짜로 칸 자동 배치</th><td>촬영 날짜로 자동, 수정 가능</td><td>날짜·시간 수정으로 다른 날 배정 가능(v1.927). 자동 배치는 —</td><td>—</td><td>—</td><td>카메라 롤에서 주·월 단위로 채움</td></tr>
-<tr><th>여러 습관을 한 화면에</th><td>습관 × 기간 타일 보드</td><td>여러 습관 통합 캘린더(v1.925)</td><td>습관 캘린더</td><td>습관별 그리드</td><td>프로젝트 단위</td></tr>
-<tr><th>칸 상태 구분(안 한 날/쉬는 날/체크만)</th><td>3가지 이상</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
-<tr><th>주간 마무리</th><td>일요일 밤 주간 현황</td><td>주간 리캡(한 주를 사진 한 장으로)</td><td>—</td><td>—</td><td>—</td></tr>
-<tr><th>월간 공유 이미지</th><td>인스타용 월간 카드</td><td>월간 리캡은 있으나 외부 공유 기능은 설명에 없음</td><td>소셜 공유 추가됨(v1.0.6, 세부 내용 —)</td><td>통계 이미지 카드 공유(레이아웃 종류 —)</td><td>영상 공유</td></tr>
-<tr><th>플랫폼</th><td>반응형 웹</td><td>iPhone(iOS 17+)</td><td>iOS·Mac·Vision Pro</td><td>iPhone·iPad</td><td>iPhone</td></tr>
-<tr><th>가격</th><td>—</td><td>무료 + Pro 구독/Lifetime</td><td>무료 + 월 $4.99</td><td>무료 + Pro</td><td>무료 + Pro</td></tr>
-</tbody></table></div>
-    </section>
-
-    <section class="section" id="observations">
-      <div class="section-label">Observations</div>
-      <h2>잘하는 점 · 아쉬운 점</h2>
-      <div class="grid">
-    <div class="card"><h3>Momentum</h3><dl class="kv"><dt>잘하는 점</dt><dd>사진 촬영·추가, 날짜 조정, 주·월 리캡, 위젯까지 이미 다 갖췄고 "한 주를 한눈에" 화면이 있다.</dd><dt>아쉬운 점</dt><dd>설명 기준 외부 공유 기능이 안 보인다. 칸 상태(쉬는 날 등) 구분은 확인되지 않는다. iPhone 전용. 앱스토어 평점은 3건뿐이라 아직 초기 앱으로 보인다.</dd></dl></div>
-    <div class="card"><h3>HabitMirror</h3><dl class="kv"><dt>잘하는 점</dt><dd>사진 타임라인과 습관 캘린더로 "꾸준함을 보여 주는 갤러리"라는 방향이 분명하다.</dd><dt>아쉬운 점</dt><dd>공유 기능의 세부가 불분명하고, 가격이 월 $4.99로 비교적 높은 편이다. 회고 기능("Wrapped" 스타일)은 출시 예정 상태.</dd></dl></div>
-    <div class="card"><h3>Goal4</h3><dl class="kv"><dt>잘하는 점</dt><dd>습관별 그리드와 이미지 카드 공유가 이미 있다. 광고·계정 없이 기기 안에만 저장.</dd><dt>아쉬운 점</dt><dd>사진이 전혀 없어 "사진첩 그리드 같은 기쁨"은 없다.</dd></dl></div>
-    <div class="card"><h3>1SE / Leap Second</h3><dl class="kv"><dt>잘하는 점</dt><dd>빠진 날을 카메라 롤에서 채워 넣는 방식이 차곡의 "일요일 밤에 몰아서 채우기"와 같은 발상이다.</dd><dt>아쉬운 점</dt><dd>습관 개념이 없고 하루에 한 조각짜리 일기라 습관 × 기간 비교가 불가능하다.</dd></dl></div>
-    <div class="card"><h3>스탬픽 등 타임스탬프 카메라</h3><dl class="kv"><dt>잘하는 점</dt><dd>사진 + 날짜 기록이라는 가벼운 진입 장벽.</dd><dt>아쉬운 점</dt><dd>습관·주기·회고 구조가 없다.</dd></dl></div>
-    <div class="card"><h3>Folksable·Habit Tiles</h3><dl class="kv"><dt>요약</dt><dd>2차 출처만 확인. 각각 친구 인증, 알림·루틴 중심이라 차곡의 방향과는 다르다. 1차 출처 확인은 못 했다.</dd></dl></div>
+    <section class="section" id="boundaries">
+      <div class="section-label">Boundaries</div>
+      <h2>어디에 쓰고, 어디엔 쓰지 않나</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>요소</th><th>쓰는 곳</th><th>쓰지 않는 곳</th></tr></thead>
+          <tbody>
+            <tr><th><i class="dot" style="background:#13bd7e"></i> accent <code>#13bd7e</code></th><td>화면당 주요 행동 하나, 선택 상태, 헤더 링크 hover</td><td>배경 면, 칸 채우기, 장식, 완료 축하 연출. 글자만으로 뜻을 전하는 용도(흰 바탕 대비 약 2.4:1)</td></tr>
+            <tr><th><i class="dot" style="background:#06a96c"></i> accent-strong <code>#06a96c</code></th><td>전폭 주요 버튼 배경 (흰 글자)</td><td>글자 색, 보조 버튼</td></tr>
+            <tr><th><i class="dot" style="background:#fe493d"></i> error <code>#fe493d</code></th><td>사진을 못 불러오는 것 같은 실제 실패</td><td>안 한 날, 쉬는 날, 비어 있는 칸</td></tr>
+            <tr><th>굵기 700</th><td>제목, 주요 버튼 라벨</td><td>본문 문단 (본문은 400)</td></tr>
+            <tr><th>그림자 <code>0 4px 9px rgba(0,0,0,.15)</code></th><td>떠 있는 층: 시트, 팝오버, 랜딩 pill 버튼</td><td>타일 보드 위의 칸 (깊이는 사진이 담당해요)</td></tr>
+            <tr><th><i class="dot" style="background:#9fa4b0"></i> muted <code>#9fa4b0</code></th><td>부가 메타데이터</td><td>쉬는 날 같은 핵심 정보, 눌러야 하는 글자</td></tr>
+          </tbody>
+        </table>
       </div>
     </section>
 
-    <section class="section" id="sources">
-      <div class="section-label">Sources</div>
-      <h2>출처</h2>
-      <ul class="refs">
-    <li><a href="https://apps.apple.com/us/app/photo-habit-tracker-momentum/id6746295673">Photo habit tracker | Momentum (App Store)</a></li>
-    <li><a href="https://apps.apple.com/in/app/habitmirror-photo-journal/id6746387795">HabitMirror - Photo Journal (App Store)</a></li>
-    <li><a href="https://apps.apple.com/app/id6756763855">Habit Tracker &amp; Streaks: Goal4 (App Store)</a></li>
-    <li><a href="https://apps.apple.com/app/id587823548">1 Second Everyday (App Store)</a></li>
-    <li><a href="https://apps.apple.com/app/id1021405859">Leap Second - Everyday Videos (App Store)</a></li>
-    <li><a href="https://apps.apple.com/kr/app/%EC%8A%A4%ED%83%AC%ED%94%BD-%EC%82%AC%EC%A7%84-%EA%B8%B0%EB%A1%9D-%ED%83%80%EC%9E%84%EC%8A%A4%ED%83%AC%ED%94%84-%EC%B9%B4%EB%A9%94%EB%9D%BC/id6756785730">스탬픽 (App Store)</a></li>
-    <li><a href="https://subscribed.fyi/blog/folksable-3-photo-habit-tracker-for-accountability/">Folksable 3 소개 (Subscribed.FYI, 2차)</a></li>
-    <li><a href="https://www.techloy.com/how-habit-tiles-can-change-your-life/">how habit tiles can change your life (Techloy, 2차)</a></li>
-      </ul>
+    <section class="section" id="type">
+      <div class="section-label">Type</div>
+      <h2>글꼴</h2>
+      <div class="type-scale">
+        <div class="type-row">
+          <div class="type-meta">제품 제목 · 20px / 700 / 28px</div>
+          <div class="type-sample" style="font-size:20px;font-weight:700;line-height:28px;letter-spacing:normal">이번 주는 사진 4장이 모였어요.</div>
+        </div>
+        <div class="type-row">
+          <div class="type-meta">보조 제목 · 18px / 700 / 26px</div>
+          <div class="type-sample" style="font-size:18px;font-weight:700;line-height:26px;letter-spacing:-0.09px">조깅이 한 칸 채워졌어요.</div>
+        </div>
+        <div class="type-row">
+          <div class="type-meta">본문 · 16px / 400 / 24px</div>
+          <div class="type-sample" style="font-size:16px;font-weight:400;line-height:24px;letter-spacing:normal">습관마다 사진으로 칸을 채우고, 한 주와 한 달을 돌아봐요.</div>
+        </div>
+        <div class="type-row">
+          <div class="type-meta">강조 라벨 · 16px / 700 / 26px</div>
+          <div class="type-sample" style="font-size:16px;font-weight:700;line-height:26px;letter-spacing:-0.08px">습관 만들기</div>
+        </div>
+        <div class="type-row">
+          <div class="type-meta">메타데이터 · 14px / 500 / 20px</div>
+          <div class="type-sample" style="font-size:14px;font-weight:500;line-height:20px;letter-spacing:-0.07px">이번 달 카드가 만들어졌어요.</div>
+        </div>
+        <div class="type-row">
+          <div class="type-meta">캡션 · 12px / 500 / 18px</div>
+          <div class="type-sample" style="font-size:12px;font-weight:500;line-height:18px;letter-spacing:-0.06px">쉬는 날 · 사진 4장</div>
+        </div>
+      </div>
     </section>
 
-    <footer class="footer">Vibe Studio · 원본: docs/benchmark.md</footer>
+    <section class="section" id="shape">
+      <div class="section-label">Shape</div>
+      <h2>간격 · 모서리 · 그림자</h2>
+      <h3 class="sub">간격 (4px 단위)</h3>
+      <div class="token-rows">
+        <div class="token-row">
+          <div class="token-box is-space" style="width:4px"></div>
+          <div class="token-meta">간격<code>4px</code></div>
+        </div>
+        <div class="token-row">
+          <div class="token-box is-space" style="width:8px"></div>
+          <div class="token-meta">간격<code>8px</code></div>
+        </div>
+        <div class="token-row">
+          <div class="token-box is-space" style="width:12px"></div>
+          <div class="token-meta">간격<code>12px</code></div>
+        </div>
+        <div class="token-row">
+          <div class="token-box is-space" style="width:16px"></div>
+          <div class="token-meta">간격<code>16px</code></div>
+        </div>
+        <div class="token-row">
+          <div class="token-box is-space" style="width:20px"></div>
+          <div class="token-meta">간격<code>20px</code></div>
+        </div>
+        <div class="token-row">
+          <div class="token-box is-space" style="width:24px"></div>
+          <div class="token-meta">간격<code>24px</code></div>
+        </div>
+        <div class="token-row">
+          <div class="token-box is-space" style="width:32px"></div>
+          <div class="token-meta">간격<code>32px</code></div>
+        </div>
+        <div class="token-row">
+          <div class="token-box is-space" style="width:40px"></div>
+          <div class="token-meta">간격<code>40px</code></div>
+        </div>
+        <div class="token-row">
+          <div class="token-box is-space" style="width:48px"></div>
+          <div class="token-meta">간격<code>48px</code></div>
+        </div>
+        <div class="token-row">
+          <div class="token-box is-space" style="width:64px"></div>
+          <div class="token-meta">간격<code>64px</code></div>
+        </div>
+      </div>
+      <h3 class="sub">모서리</h3>
+      <div class="token-rows">
+        <div class="token-row">
+          <div class="token-box" style="border-radius:6px"></div>
+          <div class="token-meta">칩<code>radius · 6px</code></div>
+        </div>
+        <div class="token-row">
+          <div class="token-box" style="border-radius:16px"></div>
+          <div class="token-meta">주요 버튼<code>radius · 16px</code></div>
+        </div>
+        <div class="token-row">
+          <div class="token-box" style="border-radius:24px"></div>
+          <div class="token-meta">카드 · 컨테이너<code>radius · 24px</code></div>
+        </div>
+        <div class="token-row">
+          <div class="token-box" style="border-radius:9999px"></div>
+          <div class="token-meta">페이지 점 · 랜딩 pill<code>radius · full pill</code></div>
+        </div>
+      </div>
+      <h3 class="sub">그림자</h3>
+      <div class="token-rows">
+        <div class="token-row">
+          <div class="token-box" style="box-shadow:0 4px 9px rgba(0,0,0,0.15);background:#fff"></div>
+          <div class="token-meta">떠 있는 층<code>0 4px 9px rgba(0,0,0,.15)</code></div>
+        </div>
+        <div class="token-row">
+          <div class="token-box" style="box-shadow:0 2px 8px rgba(0,0,0,0.1);background:#fff"></div>
+          <div class="token-meta">플로팅 패널<code>0 2px 8px rgba(0,0,0,.1)</code></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="preview">
+      <div class="section-label">Preview</div>
+      <h2>이렇게 보여요</h2>
+      <div class="ds-preview" style="--ds-font:Pretendard, -apple-system, BlinkMacSystemFont, system-ui, &quot;Segoe UI&quot;, Roboto, &quot;Apple SD Gothic Neo&quot;, &quot;Noto Sans KR&quot;, &quot;Malgun Gothic&quot;, sans-serif; --ds-bg:#ffffff; --ds-surface:#ffffff; --ds-border:#f0f2f5; --ds-text:#111111; --ds-muted:#555c68; --ds-primary:#06a96c; --ds-on-primary:#ffffff; --ds-radius:24px; --ds-btn-radius:16px; --ds-btn-pad:16px 20px; --ds-btn-size:16px; --ds-title-size:20px">
+        <div>
+          <p class="preview-label">버튼</p>
+          <div class="ds-row">
+            <button class="ds-btn">습관 만들기</button>
+            <button class="ds-btn is-secondary">월간 공유 카드</button>
+          </div>
+        </div>
+        <div>
+          <p class="preview-label">카드</p>
+          <div class="ds-card"><h4>이번 주는 사진 4장이 모였어요.</h4><p>조깅이 한 칸 채워졌어요.</p></div>
+        </div>
+        <div>
+          <p class="preview-label">입력창 · 칩</p>
+          <div class="ds-row"><input class="ds-input" placeholder="습관 이름과 주기를 정해요." readonly><span class="ds-chip is-on" style="color:#13bd7e;background:rgba(19,189,126,0.15)">이번 주</span><span class="ds-chip">이번 달</span></div>
+        </div>
+      </div>
+      <p class="source">입력창 모서리는 현재 확인된 값이 없어 기본값으로 그렸어요.</p>
+    </section>
+
+    <section class="section" id="deps">
+      <div class="section-label">Libraries</div>
+      <h2>아이콘 · 글꼴</h2>
+      <dl class="kv">
+        <dt>아이콘</dt><dd>Lucide (<code>lucide-react</code>) — 균일한 2px 아웃라인, 기본 크기 24px. 선택 상태에만 accent를 써요.</dd>
+        <dt>글꼴</dt><dd>Pretendard — 한글·영문 모두 지원, SIL OFL 라이선스. 한글 fallback 스택을 함께 써요.</dd>
+      </dl>
+    </section>
+
+    <section class="section" id="dos">
+      <div class="section-label">Do · Don't</div>
+      <h2>이렇게 쓰고, 이렇게 쓰지 않아요</h2>
+      <div class="compare">
+        <div class="compare-col is-do">
+          <h3>이렇게 써요</h3>
+          <ul>
+            <li>accent는 화면당 하나만<span class="note">주요 행동 하나 또는 선택 상태에만 써요.</span></li>
+            <li>사진이 색을 담당해요<span class="note">주변 화면은 흰 바탕으로 조용하게 둬요.</span></li>
+            <li>안 한 날과 쉬는 날은 중립 톤으로<span class="note">선 <code>#f0f2f5</code>, 글자 <code>#9fa4b0</code>.</span></li>
+            <li>굵기는 역할대로<span class="note">읽는 글은 400, 제목과 주요 버튼은 700.</span></li>
+            <li>모서리는 역할대로<span class="note">칩 6px, 버튼 16px, 컨테이너 24px.</span></li>
+            <li>그림자는 중립색 한 겹<span class="note">타일 보드 위의 칸은 평평하게 둬요.</span></li>
+          </ul>
+        </div>
+        <div class="compare-col is-dont">
+          <h3>이렇게 쓰지 않아요</h3>
+          <ul>
+            <li>accent를 배경이나 칸 채우기에 쓰기<span class="note">장식으로 쓰지 않아요.</span></li>
+            <li>빈 칸이나 쉬는 날에 빨강·주황 쓰기<span class="note">탓하는 것처럼 보여요.</span></li>
+            <li>옛 값 쓰기<span class="note"><code>#04c584</code>, 2px 모서리, 500 굵기 본문은 쓰지 않아요.</span></li>
+            <li>캐러셀 보라·노랑 쓰기<span class="note">레퍼런스 전용 색이에요.</span></li>
+            <li>튀는 모션<span class="note">스프링·바운스, 칸이 채워질 때의 축하 연출은 쓰지 않아요.</span></li>
+            <li>이모지와 accent 글자만으로 뜻 전하기<span class="note">흰 바탕 대비가 약 2.4:1이라 읽기 어려워요.</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="voice">
+      <div class="section-label">Voice</div>
+      <h2>보이스</h2>
+      <p class="say is-do">조깅이 한 칸 채워졌어요.</p>
+      <p class="say is-do">이번 주는 사진 4장이 모였어요.</p>
+      <p class="say is-dont">완료.</p>
+      <p class="say is-dont">3일째 비어 있어요. 포기하시는 건가요?</p>
+      <p class="source"><a href="VOICE.html">보이스 가이드 자세히 보기 →</a></p>
+    </section>
+
+    <footer class="footer">Vibe Studio · 원본: docs/DESIGN.md</footer>
   </main>
 </div>
 

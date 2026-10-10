@@ -2,7 +2,7 @@
 
 > Vibe Studio · brand-voice 산출물
 > 작성일: 2026-10-10
-> 기반: docs/PRODUCT.md, docs/benchmark.md
+> 기반: docs/PRODUCT.md, docs/BENCHMARK.md
 
 ## 확정 정보
 - **서비스 이름:** 데일리롤
