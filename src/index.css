@@ -40,16 +40,18 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-button {
-  font: inherit;
-  color: inherit;
-  cursor: pointer;
-}
+@layer base {
+  button {
+    font: inherit;
+    color: inherit;
+    cursor: pointer;
+  }
 
-/* 컨트롤은 즉시 바뀐다 (DESIGN: transition 0s) */
-button,
-input {
-  transition: none;
+  /* 컨트롤은 즉시 바뀐다 (DESIGN: transition 0s) */
+  button,
+  input {
+    transition: none;
+  }
 }
 
 /* 주요 버튼: hover/pressed는 검은 오버레이 0.04 */

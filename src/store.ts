@@ -18,6 +18,7 @@ type State = {
   habits: Habit[]
   frames: Record<string, Frame> // `${habitId}|${YYYY-MM-DD}`
   draft: Draft
+  notice: string | null // 홈에 한 줄로 보이는 안내. 저장하지 않음
 }
 
 export const emptyDraft: Draft = { name: '', cycleType: 'weekly', n: 3, days: [] }
@@ -25,10 +26,10 @@ export const emptyDraft: Draft = { name: '', cycleType: 'weekly', n: 3, days: []
 const KEY = 'dailyroll.v1'
 
 function load(): State {
-  const base: State = { signedIn: false, screen: 'create', habits: [], frames: {}, draft: emptyDraft }
+  const base: State = { signedIn: false, screen: 'create', habits: [], frames: {}, draft: emptyDraft, notice: null }
   try {
     const raw = localStorage.getItem(KEY)
-    if (raw) return { ...base, ...JSON.parse(raw) }
+    if (raw) return { ...base, ...JSON.parse(raw), notice: null }
   } catch {
     /* 저장된 걸 못 읽으면 빈 상태로 시작 */
   }
@@ -41,7 +42,8 @@ const listeners = new Set<() => void>()
 /** 저장하지 못하면 false (용량 초과 등) */
 function persist(): boolean {
   try {
-    localStorage.setItem(KEY, JSON.stringify(state))
+    const { notice: _notice, ...saved } = state
+    localStorage.setItem(KEY, JSON.stringify(saved))
     return true
   } catch {
     return false
