@@ -16,6 +16,7 @@ export default function Home() {
   const { habits, frames, notice } = useStore()
   const scroller = useRef<HTMLDivElement>(null)
   const [target, setTarget] = useState<Target | null>(null)
+  const [scrollDate, setScrollDate] = useState<string | null>(null)
 
   const keys = Object.keys(frames).map((k) => k.split('|')[1])
   const earliest = keys.length ? keys.sort()[0] : undefined
@@ -30,6 +31,15 @@ export default function Home() {
     if (!el) return
     el.scrollLeft = PAD + todayIdx * (CELL + GAP) + CELL / 2 - el.clientWidth / 2
   }, [todayIdx, habits.length])
+
+  // 채운 칸이 보이도록 그 날짜 열로 스크롤
+  useLayoutEffect(() => {
+    const el = scroller.current
+    if (!el || !scrollDate) return
+    const idx = days.findIndex((d) => ymd(d) === scrollDate)
+    if (idx >= 0) el.scrollLeft = PAD + idx * (CELL + GAP) + CELL / 2 - el.clientWidth / 2
+    setScrollDate(null)
+  }, [scrollDate, days])
 
   return (
     <main className="mx-auto flex min-h-full w-full max-w-[480px] flex-col pb-10">
@@ -110,7 +120,7 @@ export default function Home() {
           습관 추가
         </button>
       </div>
-      {target && <FillSheet target={target} onClose={() => setTarget(null)} />}
+      {target && <FillSheet target={target} onClose={() => setTarget(null)} onFilled={setScrollDate} />}
     </main>
   )
 }
