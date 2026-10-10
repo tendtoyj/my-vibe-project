@@ -1,6 +1,7 @@
-import { useLayoutEffect, useRef } from 'react'
+import { useLayoutEffect, useRef, useState } from 'react'
 import { Check, Plus } from 'lucide-react'
 import { update, useStore, type Habit } from './store'
+import FillSheet, { type Target } from './FillSheet'
 import { WEEKDAY_LABELS, boardDays, weekdayIdx, ymd } from './dates'
 
 const CELL = 48
@@ -14,6 +15,7 @@ function isRestDay(habit: Habit, d: Date): boolean {
 export default function Home() {
   const { habits, frames, notice } = useStore()
   const scroller = useRef<HTMLDivElement>(null)
+  const [target, setTarget] = useState<Target | null>(null)
 
   const keys = Object.keys(frames).map((k) => k.split('|')[1])
   const earliest = keys.length ? keys.sort()[0] : undefined
@@ -84,7 +86,8 @@ export default function Home() {
                         rest={rest}
                         today={key === todayStr}
                         onTap={() => {
-                          /* 칸 채우기 시트는 조각 4에서 */
+                          // 이미 채워진 칸을 탭하면 보여주는 건 F2에서 그린다
+                          if (!frame) setTarget({ habit: h, date: key })
                         }}
                       />
                     )
@@ -107,6 +110,7 @@ export default function Home() {
           습관 추가
         </button>
       </div>
+      {target && <FillSheet target={target} onClose={() => setTarget(null)} />}
     </main>
   )
 }
