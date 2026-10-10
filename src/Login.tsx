@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import PhotoGallery from './PhotoGallery'
 import { update, useStore } from './store'
 
 export default function Login() {
@@ -15,9 +16,10 @@ export default function Login() {
   }
 
   return (
-    <main className="mx-auto flex min-h-full w-full max-w-[480px] flex-col justify-between px-6 pt-24 pb-10">
-      <div>
-        <h1 className="text-[20px] leading-7 font-bold">데일리롤</h1>
+    <main className="mx-auto flex min-h-full w-full max-w-[480px] flex-col justify-between px-6 pt-16 pb-10">
+      <div className="flex flex-1 flex-col items-center justify-center pb-12 text-center">
+        <PhotoGallery />
+        <h1 className="mt-8 text-[24px] leading-8 font-bold">데일리롤</h1>
         <p className="mt-3 text-[16px] leading-6 text-fg-2">
           습관마다 사진으로 칸을 채우고,
           <br />한 주와 한 달을 돌아봐요.
