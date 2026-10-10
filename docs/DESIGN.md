@@ -1,39 +1,89 @@
-# Banksalad Reference Design System
+---
+verified: 2026-10-10
+reference: "Banksalad Reference Design System (뱅크샐러드) — https://www.banksalad.com"
+runtime_deps:
+  icons: lucide-react
+  fonts: [Pretendard]
+---
+
+# 데일리롤 (Daily Roll) Design System
+
+<!--
+Conversion note
+Reference: Banksalad Reference Design System (뱅크샐러드), https://www.banksalad.com
+Converted 2026-10-10 with design-brandfit against docs/VOICE.md.
+- Visual tokens kept from the reference: all color values, type scale/weight/line-height, radii, spacing, shadows, motion values, component measurements. Meta, voice and copy rewritten from VOICE.md.
+- Removed: Brand Narrative, Personas (covered by VOICE.md and PRODUCT.md).
+- Added: frontmatter (runtime_deps), Usage Boundaries, Iconography, current-token Do's/Don'ts and Agent Prompt Guide.
+- Fonts: Pretendard kept (Korean coverage, OFL); no substitution. Icons: Lucide (`lucide-react`) recommended because the reference defines no icon spec.
+- Color decision: values unchanged. The accent is deliberately scarce so photos carry the color; a color change was not requested.
+- Voice samples are unverified planning copy (new service, no shipped UI yet).
+Known inconsistencies in the reference:
+1. Value-bearing prose (old Do's/Don'ts, Quick Color Reference, Example Prompts, Iteration Guide) used superseded values (`#04c584`, 2px radius, body 500) that contradict the current tokens. Per "tokens win", that prose was moved into superseded blocks and replaced by current-token guidance.
+2. The Border Radius Scale in §5, Elevation levels L1–L5 and the legacy component snapshot still carry legacy values; they are history, not current tokens.
+3. Measured gap: the reference shows no visible keyboard focus indication on any probed control. Left unchanged; to be decided at build time.
+4. Contrast: `#13bd7e` text on white is about 2.4:1 and white text on `#06a96c` is about 3.0:1, both below WCAG AA for 16px text.
+5. No palette exists for the four frame states (photo / 안 한 날 / 쉬는 날 / check-only) or for success/warning; these are decided in the flow and build steps.
+-->
 
 <!-- design-md:section experience -->
 ## 1. Experience
 
 ### Visual Theme & Atmosphere
 
-Banksalad is a Korean data-driven financial platform that helps people compare products, understand credit and spending, and connect finance with a broader health-asset proposition. Its current public web surfaces feel informational rather than decorative: a white `#ffffff` canvas, dense but readable Pretendard typography, near-black `#111111` content, and green actions that keep comparison and next steps visible. The most repeated current accent is `#13bd7e`, while a consequential full-width loan action uses the deeper `#06a96c`. This reference follows the live product surfaces and the official Banksalad Product Language publications separately, preserving BPL's collaboration philosophy without pretending its 2020 component values are necessarily identical to today's public web implementation.
+데일리롤 (Daily Roll) is a mobile-first web service where each habit is a strip of frames (칸) filled with photos, reviewed weekly and monthly. The interface should feel like a quiet photo studio: a white `#ffffff` canvas, near-black `#111111` text, Pretendard throughout, and one green, `#13bd7e`, that appears sparingly so the photos carry the color. The deeper `#06a96c` is reserved for the single full-width primary action on a screen.
 
-Current geometry is role-specific rather than governed by one sharp-corner default. The content directory uses a compact 6px green chip, the public loan action uses a 16px radius, customer-safety cards use 24px corners with a `#f0f2f5` border, and a carousel indicator uses a full pill. Plain lists and disclosure rows remain square. The earlier claim that 2px was the dominant current system came from a legacy CSS bundle and is not promoted in this pass.
+The mood is quiet because the product speaks quietly: it states what happened in a frame and never judges or pushes (see Voice & Tone). A loud interface would contradict that voice, so surfaces stay white, borders stay thin `#f0f2f5`, and nothing around the tile board competes with the photos.
 
-Typography is consistently Pretendard across the five inspected surfaces. The collector matched loaded Pretendard font faces to 603 visible elements spanning body, headings, buttons, cards, and list items. `swiper-icons` was declared but not used for visible text. BM JUA was not declared or visibly used in this fresh capture, so it is not a current UI or marketing token; its earlier promotion has been removed. The observed hierarchy relies mainly on 16px body and labels, 14px supporting copy, and 18–20px headings with 400/500/700 weights.
+Geometry is role-specific rather than governed by one default: 6px chips, 16px actions, 24px containers with a `#f0f2f5` border, and a full pill only for page indicators and landing CTAs. Plain lists and disclosure rows remain square. Typography is Pretendard on every measured surface of the reference (603 elements), with a hierarchy that relies on 16px body and labels, 14px supporting copy, and 18–20px headings at 400/500/700.
+
+These visual tokens were measured from the public web surfaces of the Banksalad reference and are kept unchanged. BM JUA is not part of this system.
 
 **Key Characteristics:**
-- Loaded Pretendard across all five current public web surfaces
-- Current accent `#13bd7e`; deeper action green `#06a96c`
-- White `#ffffff` canvas with `#111111` foreground, `#555c68` secondary text, and `#9fa4b0` muted metadata
+- Pretendard everywhere, with the full Korean fallback stack
+- Accent `#13bd7e`, used once per screen; deeper action green `#06a96c`
+- White `#ffffff` canvas with `#111111` foreground, `#555c68` secondary text, `#9fa4b0` muted metadata
 - Role-specific 6px / 16px / 24px / full-pill geometry
-- 8px, 12px, 16px, and 24px as recurring useful spacing values
-- Public product evidence covers buttons, cards, and list/disclosure rows; inputs, charts, dialogs, and authenticated app states remain unpromoted
+- 8px, 12px, 16px, and 24px as recurring spacing values
+- Reference evidence covers buttons, cards, and list/disclosure rows; inputs, charts, dialogs, and the four frame states remain unresolved
 
 <!-- design-md:claim primary-tasks kind=user-outcomes count=5 lang=en -->
 ### Primary tasks
 
-- Compare cards, loans, deposits, or insurance and read the conditions
-- Check whether an interest-rate reduction request is available
-- Read a card's benefits, disclosures, and product details
-- Get guidance after fraud, identity theft, or a mistaken transfer
-- Read up on a financial decision before entering a product flow
+- Create a habit with a name and a cycle (daily, N times a week, chosen weekdays)
+- Fill a frame (칸) by picking or taking a photo that lands on its shooting date
+- See several habits as stacked photo strips on one board
+- Look back on the week on Sunday night
+- Turn a month of photos into a card to share
 <!-- design-md:claim-end -->
 
 ### Do's and Don'ts
 
 ### Do
+- Use `#13bd7e` sparingly as the accent: one primary action or selected state per screen
+- Use `#06a96c` with `#ffffff` text for the full-width primary action
+- Use `#111111` for text, `#555c68` / `#606874` for supporting copy, `#9fa4b0` for muted metadata only
+- Use Pretendard with the full Korean fallback stack; 400 for reading, 700 for headings and decisions
+- Keep radii role-specific: 6px chips, 16px actions, 24px containers
+- Keep shadows neutral and single-layer
+- Let photos carry the color; keep the UI around them white and quiet
+- Show 안 한 날 and 쉬는 날 in neutral tones, never in alert colors
+
+### Don't
+- Don't use the superseded `#04c584` / `#10df99`, a 2px default radius, or a weight-500 body
+- Don't use the accent as a background fill, frame fill, or decoration
+- Don't use `#fe493d` or warning orange for empty or skipped frames
+- Don't use the carousel purple `#877af5` or yellow `#ffbe4c`
+- Don't use spring or bounce motion, and don't celebrate a filled frame with animation
+- Don't use emoji in the UI
+- Don't let accent-colored text alone carry meaning (about 2.4:1 on white)
+
+<details>
+<summary>Superseded legacy guidance — values predate the current tokens, kept for audit history</summary>
+
+### Do
 - Use `#04c584` for every interactive moment — CTAs, links, focus accents, "your data point" on charts
-- Use `#10df99` for hover (it's *brighter* than `#04c584` — Banksalad lightens on interaction)
+- Use `#10df99` for hover (it's *brighter* than `#04c584` — the reference lightens on interaction)
 - Use `#f3fdfa` mint tint on input focus background — the only branded surface tint in the system
 - Keep border-radius at 2px for buttons, inputs, cards, badges — the system's geometric signature
 - Use Pretendard with the full Korean fallback stack; 700 as default weight for headings and CTAs
@@ -44,46 +94,37 @@ Typography is consistently Pretendard across the five inspected surfaces. The co
 - Use comma-separated won amounts with the currency unit in 500 weight (`12,400,000원`)
 
 ### Don't
-- Don't use Toss's 12px+ rounded corners — Banksalad is 2px; 8px is the soft-marketing exception
+- Don't use Toss's 12px+ rounded corners — the reference is 2px; 8px is the soft-marketing exception
 - Don't use Kakao yellow, KakaoPay yellow, or any warm accent for primary interaction — green is the sole interactive hue
 - Don't use BM JUA inside the app — Jua is for marketing-landing display moments only
-- Don't use weight 400 for body — Banksalad's body weight is 500
+- Don't use weight 400 for body — the reference's body weight is 500
 - Don't apply colored shadows (blue, green, branded) — shadows are always neutral black
-- Don't pad financial cards generously like Toss — Banksalad packs density; data is the aesthetic
+- Don't pad financial cards generously like Toss — the reference packs density; data is the aesthetic
 - Don't approximate currency amounts (`약 120만원`) on primary financial surfaces — bare numerals with commas only
 - Don't use `#0099ff` info-blue for default links — green is the default link color; blue is reserved for *external* references
 - Don't use Pretendard 300 on body — light weights only at hero display sizes (52px+)
 - Don't sprinkle the brand green on chart series — green is for interaction, teal-slate is for data
 
-### Brand Narrative
-
-Banksalad's current first-party web presence presents a data-based financial platform spanning product comparison, credit and loan guidance, financial content, customer safety, and a wider health-asset direction. The current home page describes a large comparison inventory and a recommendation engine designed to help people choose favorable products. This reference uses those live statements as the present product narrative and does not rely on third-party founder mythology, funding figures, or fabricated competitive comparisons.
-
-The official BPL publications explain how this product is made. Banksalad describes Product Language as broader than a visual design system: designers and platform engineers share names, abstraction boundaries, component structures, implementation guidance, and examples. BPL emerged alongside a major service redesign, moved collaborative design work to Figma, established ground rules, and maintained versioned libraries and sample applications so platform differences could be reviewed rather than hidden.
-
-BPL's implementation article states “Communication cost is most expensive. Code and Show first, argue after that.” It describes working prototypes, component examples, snapshot testing, and an integral sample app as ways to align design and implementation. These are verified process principles. They do not prove that the colors, radius, or typography observed in 2020 remain current tokens, which is why the current five-surface measurements are reconciled independently.
-
-The current design identity therefore has two evidence layers: an official history of cross-functional product-language practice, and a present web implementation built from white surfaces, Pretendard, green actions, explicit comparison copy, and role-specific geometry. Neither layer is used as a substitute for inaccessible native-app evidence.
+</details>
 
 ### Principles
 
-1. **Share one product language.** BPL exists so design and platform teams name and structure the same UI concepts consistently. *UI implication:* component names and anatomy should map across design and implementation rather than being reinvented per platform.
-2. **Code and show before abstract debate.** The official BPL article uses working prototypes to expose where teams agree or disagree. *UI implication:* validate a component in a representative screen before promoting a generalized rule.
-3. **Keep design and implementation structures aligned.** BPL describes matching Figma layout structure closely enough that a design change produces a corresponding implementation change. *UI implication:* avoid premature abstraction that obscures the authored component anatomy.
-4. **Version the shared language.** The official design article describes fixed platform versions, update tracking, and component-list tooling. *UI implication:* reference claims need dates and surface provenance; old BPL values cannot silently become current web tokens.
-5. **Test components alone and in realistic composition.** BPL used component examples, snapshot tests, and an integral sample app. *UI implication:* validate both the isolated spec and the assembled product flow.
+1. **Photos carry the color.** The UI stays white and quiet. *UI implication:* no tinted surfaces or decorative fills around the tile board, and the accent never fills a frame.
+2. **One accent per screen.** *UI implication:* a single primary action or selected state uses `#13bd7e` / `#06a96c`; everything else stays neutral.
+3. **Say what happened, not what is missing.** This is the voice rule applied to visuals. *UI implication:* 안 한 날 and 쉬는 날 use neutral tones (`#f0f2f5` line, `#9fa4b0` muted), never red or orange, and empty frames carry no alert badge.
+4. **Calm motion.** The only verified transition is a 350ms accordion; controls change instantly. *UI implication:* no spring, bounce, or celebratory animation when a frame fills.
+5. **Verify on a real screen.** *UI implication:* check a component on the actual tile board and weekly view before generalizing it into a rule.
 
-### Personas
+### Usage Boundaries
+| Element | Use for | Never use for |
+|---|---|---|
+| accent `#13bd7e` | One primary action or selected state per screen; header link hover | Background fills, frame fills, decoration, completion celebration; text alone as the carrier of meaning (about 2.4:1 on white) |
+| accent-strong `#06a96c` | Fill of the full-width primary action, with `#ffffff` text | Text color, secondary buttons |
+| error `#fe493d` (legacy value; state palette unresolved) | Real failures, such as a photo that could not be loaded | 안 한 날, 쉬는 날, or empty frames |
+| Weight 700 | Headings and the primary action label | Body paragraphs (body is 400) |
+| Shadow `0 4px 9px rgba(0,0,0,.15)` | Floating layers: sheets, popovers, landing pill CTA | Frames on the tile board — the photos supply depth |
+| muted `#9fa4b0` | Supporting metadata | Essential information such as 쉬는 날 labels; interactive text |
 
-Banksalad does not publish validated demographic personas in the sources used for this pass. The current public surfaces support task contexts instead:
-
-- A person comparing cards, loans, deposits, or insurance and reading product conditions.
-- A person checking whether an interest-rate reduction request may be available.
-- A card-detail visitor reading benefits, disclosures, and product metadata.
-- A customer looking for fraud, identity-theft, voice-phishing, or mistaken-transfer guidance.
-- A reader using the financial contents directory to understand a decision before entering a product flow.
-
-These are observable jobs, not invented people. Names, ages, quotes, income, behavior frequency, and authenticated-app habits require separate user research.
 
 <!-- design-md:section foundations -->
 ## 2. Foundations
@@ -125,9 +166,9 @@ No current public chart, authenticated dashboard, input validation, warning, err
 | Inset (L-1) | `inset 0 1px 1px rgba(0,0,0,.12)` | Pressed button state, depressed input visual |
 | Halo | `0 0 2px rgba(0,0,0,.26)` | Thin outline on overlay menus and popovers |
 
-**Shadow Philosophy.** Shadows are **always neutral and single-layer.** No colored shadows, no parallax stacks. Where Stripe brands its shadows in navy and Toss uses near-zero shadows for clinical clarity, Banksalad sits between — visible enough that cards lift off the surface, restrained enough that the data inside is what the eye lands on. The signature `0 2px 5px rgba(0,0,0,.12)` is a small, low-cost lift used 38× in the bundle.
+**Shadow Philosophy.** Shadows are **always neutral and single-layer**: no colored shadows, no parallax stacks. Levels L1–L5 are the measured scale kept from the reference. On the tile board frames stay flat, because the photos supply the depth.
 
-Measured exception (2026-07-12 capture, confirmed 2026-09-29): the customer-safety link card carries a tinted rest shadow, `0 8px 24px #dce9f3`, so the neutral-only statement above does not hold for that card.
+Measured exception (2026-07-12 capture, confirmed 2026-09-29): the Safety Link Card (unused — reference-specific) carries a tinted rest shadow, `0 8px 24px #dce9f3`, so the neutral-only statement above does not hold for that card.
 
 ### Motion & Easing
 
@@ -155,14 +196,14 @@ One current public accordion panel exposed a `350ms` height/opacity transition u
 | `ease-standard` | `cubic-bezier(0.4, 0.0, 0.2, 1)` | Two-way transitions, chart draw-in |
 | `ease-data` | `cubic-bezier(0.25, 0.46, 0.45, 0.94)` | Score count-up, chart series — eases out gradually so the final value is the calm resting state |
 
-**Explicitly forbidden.** No spring overshoot anywhere. No bounce. No `cubic-bezier` with a middle control above `1.0`. Banksalad's voice is *advisor*, not *delighter* — spring-easing reads as a consumer app celebrating a transaction, which is the opposite of the brand promise. Where Toss licenses spring easing only for the money-moved checkmark, Banksalad does not license it at all.
+**Explicitly forbidden.** No spring overshoot anywhere. No bounce. No `cubic-bezier` with a middle control above `1.0`. 데일리롤's voice is calm and matter-of-fact, so filling a frame is never celebrated with overshoot or bounce. The reference licenses spring easing nowhere, and neither does this system.
 
 **Signature motions.**
 
-1. **Score count-up.** When a credit-score or asset-total updates, the number animates from the previous value to the new value across `motion-data` (600ms) with `ease-data`. The duration is deliberately slow — the user is supposed to read the change, not see it flash. The Korean numeric separators (`,`) re-flow correctly during the count.
-2. **Chart series draw-in.** Time-series charts draw left-to-right in `motion-data` with `ease-standard`. The user's own series (`#04c584`) is drawn *last*, so the eye lands on the user's own data after the surrounding distribution has been established.
-3. **Recommendation card reveal.** When a fresh recommendation set loads, cards fade in with `motion-standard / ease-enter` from `opacity: 0; translateY(4px)`. Translate is intentionally small (4px, not 20px) — the cards arrive, they do not fly in.
-4. **Reduce motion.** Under `prefers-reduced-motion: reduce`, all `motion-*` tokens collapse to `motion-instant`. Score count-ups become instant value swaps. Chart draw-ins render their final state immediately. Banksalad remains fully usable; nothing in the product is information-dependent on motion.
+1. **Score count-up (unused — reference-specific).** When a credit-score or asset-total updates, the number animates from the previous value to the new value across `motion-data` (600ms) with `ease-data`. The duration is deliberately slow — the user is supposed to read the change, not see it flash. The Korean numeric separators (`,`) re-flow correctly during the count.
+2. **Chart series draw-in (unused — reference-specific).** Time-series charts draw left-to-right in `motion-data` with `ease-standard`. The user's own series (`#04c584`) is drawn *last*, so the eye lands on the user's own data after the surrounding distribution has been established.
+3. **Recommendation card reveal (unused — reference-specific).** When a fresh recommendation set loads, cards fade in with `motion-standard / ease-enter` from `opacity: 0; translateY(4px)`. Translate is intentionally small (4px, not 20px) — the cards arrive, they do not fly in.
+4. **Reduce motion.** Under `prefers-reduced-motion: reduce`, all `motion-*` tokens collapse to `motion-instant`. Score count-ups become instant value swaps. Chart draw-ins render their final state immediately. The product remains fully usable; nothing in the product is information-dependent on motion.
 
 </details>
 
@@ -177,7 +218,7 @@ One current public accordion panel exposed a `350ms` height/opacity transition u
 |---|---|
 | Official product-use | BPL publications establish an official product-language system, but do not publish a current universal font token in the inspected text. |
 | Live surface-use | Five public web surfaces loaded and visibly used Pretendard on 603 elements. |
-| Official distributed asset | No Banksalad-exclusive UI font asset is promoted in this reference. |
+| Official distributed asset | No reference-exclusive UI font asset is promoted in this reference. |
 | Declared-only | `swiper-icons` was declared with zero visible text usage. |
 | Evidence boundary | Native-app-only typography remains unresolved without an inspectable current surface. |
 
@@ -185,6 +226,7 @@ Specimen availability requires a loadable font source and is separate from famil
 
 ### Font Family
 - **Primary**: `Pretendard, -apple-system, BlinkMacSystemFont, system-ui, "Segoe UI", Roboto, "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", sans-serif`
+- 데일리롤 decision: keep Pretendard (full Korean and Latin coverage, SIL OFL); no font substitution is needed.
 - Loaded sources were observed for Pretendard Regular, Medium, SemiBold, Bold, and ExtraBold subsets.
 - BM JUA was not declared, loaded, or visibly used in this fresh capture and is omitted.
 
@@ -212,7 +254,7 @@ Specimen availability requires a loadable font source and is separate from famil
 
 ### Current verified components
 
-**Primary Loan Action**
+**Primary Action**
 - Background: `#06a96c`
 - Text: `#ffffff`
 - Radius: 16px
@@ -223,9 +265,9 @@ Specimen availability requires a loadable font source and is separate from famil
 - Pressed: the same overlay at 0.04 (pressed equals hover)
 - Focus: no visible indication — `outline-style: none`, and no other property changes (measured 2026-09-29 after real Tab presses, `:focus-visible` matched)
 - States: default captured 2026-07-12; hover, pressed and focus measured 2026-09-29 on the same loan-flow button; every change is instant (`transition: all 0s`)
-- Use: Full-width primary action in the public interest-rate flow
+- Use: Full-width primary action, labelled with a PRODUCT.md feature name (e.g., 습관 만들기). Reference use: public interest-rate flow
 
-**Content Filter Chip**
+**Filter Chip**
 - Background: `rgba(19, 189, 126, 0.15)`
 - Text: `#13bd7e`
 - Radius: 6px
@@ -234,15 +276,15 @@ Specimen availability requires a loadable font source and is separate from famil
 - States: default captured 2026-07-12; no safe active interaction expansion. The `/contents` surface answered HTTP 404 on 2026-09-29 (four attempts), so these values could not be re-measured and stay as captured
 - Use: Category and filter action on the public contents directory
 
-**Customer Safety Card**
+**Info Card**
 - Background: `#ffffff`
 - Border: 1px solid `#f0f2f5`
 - Radius: 24px
 - Padding: 24px
-- Use: Customer-safety action and guidance card
+- Use: Guidance card in the 24px container shape (reference use: customer-safety guidance)
 - Scope: the 158px guidance list card (`surface-4::li`, six on the page). The report link cards at the top of the same page are a different element, recorded below as Safety Link Card; the 2026-09-29 probe measured one of those, so its 28px 24px padding and tinted shadow do not apply here
 
-**Product Disclosure Row**
+**Disclosure Row (unused — reference-specific)**
 - Background: transparent
 - Label: `#272a30`, 16px / 700 / Pretendard — the visible `span.text-b16.font-bold` (measured 2026-09-29). The button's own computed style is `#000000` 16px / 400; the earlier `#111111` matched neither
 - Radius: 0px
@@ -253,48 +295,54 @@ Specimen availability requires a loadable font source and is separate from famil
 
 ### Header, hero and footer (captured 2026-07-12; states measured 2026-09-29)
 
-**Header Menu Link**
+**Header Link**
 - Text: `#111111`, 16px / 700 / Pretendard, -0.08px tracking; padding 0 22px, 26px line box, no fill
 - Hover and pressed: the text turns `#13bd7e`. All 44 July state samples (11 links on four surfaces) agree, and the 2026-09-29 probe read the same on 카드 with real `:hover` and `:active`
 - Focus: no visible indication — `outline-style: none`, nothing else changes (measured 2026-09-29)
-- Use: sticky desktop header (카드, 대출, 예적금, 무료 건강 검사, 건강 보험, 자동차보험 …)
+- Use: sticky desktop header (reference labels 카드, 대출, 예적금 … are unused — reference-specific)
 
-**Hero Pill CTA**
+**Landing Pill CTA**
 - Background `#13bd7e`, text `#ffffff`, 41px radius, padding 10px 20px, 41px tall, 18px / 500 / Pretendard
 - Shadow: `0 4px 9px rgba(0,0,0,0.15)`
 - Hover and pressed: no visible change. Focus: no visible indication (all measured 2026-09-29)
-- The carousel's other slides recolour the same pill: `#877af5` with white text (내 최저금리 조회하기) and `#ffbe4c` with `#111111` text (이벤트 보기), captured 2026-07-12 and present again in the 2026-09-29 survey
-- Use: 뱅크샐러드 사용해보기
+- (unused — reference-specific) The carousel's other slides recolour the same pill: `#877af5` with white text (내 최저금리 조회하기) and `#ffbe4c` with `#111111` text (이벤트 보기), captured 2026-07-12 and present again in the 2026-09-29 survey
+- Use: landing primary CTA (reference label 뱅크샐러드 사용해보기 — unused — reference-specific)
 
-**Hero Outline Pill**
+**Landing Outline Pill**
 - Background `#ffffff`, text and 1px border `#13bd7e`; the filled pill's radius, padding, type and shadow; 43px tall
 - Hover and pressed: no visible change. Focus: no visible indication (all measured 2026-09-29)
-- Use: 서비스 더 알아보기
+- Use: landing secondary CTA (reference label 서비스 더 알아보기 — unused — reference-specific)
 
-**Safety Link Card**
+**Safety Link Card (unused — reference-specific)**
 - Background `#ffffff`, 1px solid `#f0f2f5` border, 24px radius, padding 28px 24px, 564px × 190px (272px-wide cards sit beside it)
 - Shadow: `0 8px 24px #dce9f3` — a tinted rest shadow, present in the 2026-07-12 capture and on 2026-09-29
 - Title: `#272a30`, 24px / 700 (measured 2026-09-29)
 - Hover and pressed: no visible change. Focus: no visible indication (all measured 2026-09-29)
-- Use: customer-safety report links (명의 도용 의심 …)
+- Use: report links (reference label 명의 도용 의심 — unused — reference-specific)
 
-**Carousel Page Dot**
+**Carousel Page Dot (unused — reference-specific)**
 - `#ffffff`, 9999px radius, 36px × 8px for the current page, shadow `0 2px 8px rgba(0,0,0,0.1)`; the 2026-09-29 survey reads the other dots at 8px × 8px
 - No pointer-state sample
 
 **Footer Link**
 - Text `#111111`, 16px / 400 / Pretendard, 20px line box, no fill
 - No pointer-state sample
-- Use: footer columns (회사소개, 블로그, 공지사항, 이용약관 …)
+- Use: footer columns (reference labels 회사소개, 블로그 … are unused — reference-specific)
 
 None of the six controls probed on 2026-09-29 shows a visible keyboard focus indication: each removes the browser ring (`outline-style: none`) and changes nothing else. That is recorded as a measured absence on each component, not as a focus token.
+
+### Iconography
+- Library: Lucide (`lucide-react`, MIT). Outline style only, using the library defaults (24px grid, 2px stroke); no filled or duotone variants.
+- Icons are neutral (`#111111` / `#555c68`); the accent appears only on a selected state, per Usage Boundaries.
+- Why: even strokes suit the calm, orderly voice. The reference defines no icon spec, so this fills the gap.
+
 
 <details>
 <summary>Superseded 2026-05 legacy snapshot — retained for audit history, not canonical</summary>
 
 ### Legacy Buttons
 
-#### Primary CTA (Salad Green)
+#### Primary CTA (Legacy Accent Green)
 - Background: `#04c584`
 - Text: `#ffffff`
 - Border: none
@@ -324,7 +372,7 @@ None of the six controls probed on 2026-09-29 shows a visible keyboard focus ind
 - Radius: 2px
 - Padding: 10px 20px
 - Font: 14px / 500 / Pretendard
-- Hover: background `#04c584` (darkens — the one place Banksalad uses the darken pattern)
+- Hover: background `#04c584` (darkens — the one place the reference uses the darken pattern)
 - Use: Secondary retry / "다시 시도" actions where the resting state is a softer mint
 
 #### Ghost / Outlined
@@ -520,25 +568,26 @@ The 2026-07-12 collector performed zero safe interaction expansions, but its pse
 A live probe on 2026-09-29 measured hover, pressed and keyboard focus on six controls. The header link turns `#13bd7e`; the loan action darkens through a black `::after` overlay at opacity 0.04; the two hero pills, the safety link card and the disclosure row do not change; and none of the six shows a visible keyboard focus indication (`outline-style: none`, nothing else changes). No canonical empty, loading, error, success, or disabled treatment is promoted. The loan accordion was captured in its rendered state, but this does not establish a complete product-state system.
 
 <details>
-<summary>Superseded synthetic state proposals — not verified product facts</summary>
+<summary>Superseded synthetic state proposals — not verified product facts; copy converted to VOICE.md</summary>
 
 | State | Treatment |
 |---|---|
-| **Empty (no linked accounts)** | White canvas. Single short paragraph in `#434444` body text explaining why the screen is empty (`아직 연동된 카드가 없어요. 카드를 연동하면 자동으로 지출 분석이 시작돼요.`). One primary CTA in Salad Green (`#04c584`, 2px radius). No illustration. |
-| **Empty (filter cleared)** | Single line of `#7b7b7b` caption (`조건에 맞는 결과가 없어요. 필터를 조정해주세요.`). No CTA — user adjusts filters themselves. |
-| **Empty (no transactions this period)** | Two-line message in `#434444` explaining the filter scope (`선택한 기간에 거래 내역이 없어요. 다른 기간을 선택하거나 카드 연동을 확인해보세요.`). |
-| **Loading (first paint)** | Skeleton blocks at `#f5f5f5` matching the final layout exactly. Financial amounts render as `--원` placeholders rather than skeleton bars — a skeleton bar that resolves to a number is disorienting; `--` is honest. 1s shimmer with 8% white highlight using a `linear-gradient` sweep. |
-| **Loading (refresh / in-place)** | Subtle `#04c584` 2px progress bar at top of the section. Previous values stay visible. Never block the table during refresh. |
-| **Error (inline field)** | `#fe493d` 1px border on the input, 12px error text below in `#fe493d` weight 500. One actionable sentence (`주민등록번호가 일치하지 않아요. 다시 확인해주세요.`). |
-| **Error (recommendation fetch failed)** | Inline banner inside the recommendation card area. `#fe493d` left border, white background, 14px `#434444` text explaining what failed + a `다시 시도하기` button in the retry-button style (`#10df99` resting → `#04c584` on hover). Never a generic toast. |
-| **Error (data freshness warning)** | Soft warning banner with `#fd8700` left accent bar, white background, 13px `#7b7b7b` text noting the data is N hours stale. Non-blocking — the user can still see the (possibly stale) figures. |
-| **Success (action confirmed)** | Inline confirmation row in `#f3fdfa` mint-tint background, `#04c584` 16px / 700 confirmation text, the relevant figure in 22px / 700 `#2b2b2b` below. No toast for important actions — they get their own confirmation surface. |
-| **Success (passive update)** | 3s auto-dismiss toast at top-right. `#2b2b2b` background (NOT brand green — green is reserved for interactive surfaces), white 14px / 500 text, 2px radius, shadow `0 2px 5px rgba(0,0,0,.12)`. No emoji. |
-| **Skeleton** | `#f5f5f5` blocks at exact final dimensions, 2px radius matching the component being loaded. 1s shimmer. Financial-amount slots show `--원`, not a bar. |
-| **Disabled** | Background `#e1e1e1`, text `#acacac`, 2px radius preserved. Cursor `not-allowed`. The geometry stays identical to the enabled state so re-enabling does not shift layout. |
-| **Pressed (button)** | Inset shadow `inset 0 1px 1px rgba(0,0,0,.12)` + background shifts by ~5% darker for the press duration. Returns instantly on release (no spring). |
+| **Empty (no habits yet)** | White canvas. One short line in `#555c68`: `습관을 만들면 여기에 칸이 생겨요.` One primary action in the accent, labelled 습관 만들기. No illustration. |
+| **Empty (filter cleared)** | (unused — reference-specific) |
+| **Empty (no data this period)** | (unused — reference-specific) |
+| **Loading (first paint)** | Skeleton blocks at `#f5f5f5` matching the final layout exactly. 1s shimmer with 8% white highlight using a `linear-gradient` sweep. |
+| **Loading (refresh / in-place)** | Subtle `#04c584` 2px progress bar at top of the section. Previous values stay visible. Never block the board during refresh. |
+| **Error (inline field)** | `#fe493d` 1px border on the input, 12px error text below in `#fe493d` weight 500. One line saying what failed and the next action. |
+| **Error (photo failed to load)** | Inline banner in the affected area. `#fe493d` left border, white background, 14px `#555c68` text: `사진을 불러오지 못했어요. 다시 시도해 주세요.` with a retry button. Never a generic toast. |
+| **Error (data freshness warning)** | (unused — reference-specific) |
+| **Success (frame filled)** | Inline confirmation row in `#f3fdfa` mint-tint background with the text `조깅이 한 칸 채워졌어요.` (habit name as subject). No toast, no emoji, no exclamation. |
+| **Success (passive update)** | 3s auto-dismiss toast, `#2b2b2b` background (not brand green), white 14px / 500 text, shadow `0 2px 5px rgba(0,0,0,.12)`. No emoji. |
+| **Skeleton** | `#f5f5f5` blocks at exact final dimensions. 1s shimmer. |
+| **Disabled** | Background `#e1e1e1`, text `#acacac`. Cursor `not-allowed`. The geometry stays identical to the enabled state so re-enabling does not shift layout. |
+| **Pressed (button)** | Inset shadow `inset 0 1px 1px rgba(0,0,0,.12)` + background about 5% darker for the press duration. Returns instantly on release (no spring). |
 
 </details>
+
 
 <!-- design-md:section layout-platforms -->
 ## 5. Layout & Platforms
@@ -548,7 +597,7 @@ A live probe on 2026-09-29 measured hover, pressed and keyboard focus on six con
 ### Spacing System
 - Base unit: 4px
 - Scale: 4px, 8px, 12px, 16px, 20px, 24px, 32px, 40px, 48px, 64px
-- Card internal padding: 20px / 24px (slightly tighter than Toss's 20px-horizontal default — Banksalad packs more data)
+- Card internal padding: 20px / 24px (compact; the reference packs more data per card)
 - Table-row vertical padding: 12px (denser than consumer apps)
 
 ### Grid & Container
@@ -558,11 +607,14 @@ A live probe on 2026-09-29 measured hover, pressed and keyboard focus on six con
 - Charts: full-width within their card container, never bleed outside
 
 ### Whitespace Philosophy
-- **Density is the brand.** Where Toss says "breathing room for money", Banksalad says "more facts visible without scrolling". A balance, a comparison rate, an interest rate, and three filter chips can coexist in one card.
+- **Density serves the board.** The reference prefers more facts visible without scrolling; for 데일리롤 that density belongs to the habit × period board, while the screens around it stay quiet.
 - **Section rhythm by surface fill.** White (`#ffffff`) and off-white (`#fbfbfb`) sections alternate quietly — not for drama, but to chunk dense data into scannable bands.
 - **Tight gaps inside, generous gaps outside.** Inside a comparison card, rows sit on 12px vertical gaps. Between cards, 24–32px. The hierarchy of grouping is communicated through gap-size alone.
 
 ### Border Radius Scale
+
+Current verified radii: 6px chips, 16px actions, 24px containers, full pill for indicators. The legacy scale below is history only.
+
 - **2px (dominant — 81 occurrences in CSS)**: Buttons, inputs, cards, badges, banners. The signature.
 - 4px: Small badges, inline pills.
 - 8px: Soft marketing cards (rare).
@@ -570,7 +622,7 @@ A live probe on 2026-09-29 measured hover, pressed and keyboard focus on six con
 - 30–41px: Filter pills, tag chips, avatar circles.
 - 50%: Avatars, icon backdrops.
 
-Banksalad's 2px is a typographic-engineering commitment: pixel rounding sharp enough to look engineered, soft enough to not draw blood. Any radius ≥ 12px feels Toss-ish and is reserved for explicitly marketing-warmth contexts.
+The 2px default is superseded by the role-specific radii above; do not apply it. This scale is retained for history only.
 
 ### Responsive Behavior
 
@@ -584,7 +636,7 @@ Banksalad's 2px is a typographic-engineering commitment: pixel rounding sharp en
 
 ### Touch Targets
 - Buttons minimum 42px height (default), 56px for hero display CTAs
-- Table rows minimum 44px (slightly denser than 48px standard — Banksalad accepts a tighter tap)
+- Table rows minimum 44px (slightly denser than 48px standard — the reference accepts a tighter tap)
 - Filter pill chips: 28–32px height
 - Input minimum 48px height; amount-input 56px
 
@@ -605,28 +657,35 @@ Banksalad's 2px is a typographic-engineering commitment: pixel rounding sharp en
 
 ### Voice & Tone
 
-Current public copy is direct, explanatory, and comparison-oriented. The home page connects financial and health assets; the contents directory names products, benefits, and comparison tasks explicitly; customer-safety copy gives the risk and the next action. This supports a factual Korean product voice, but it does not establish the invented notification, validation, or authenticated-app copy previously included here.
+데일리롤 speaks like a reticent photo-studio owner quietly tidying an album: it says what happened in the frame, in short complete sentences, in everyday polite Korean (`~해요`). It never judges, pushes, or praises loudly. The habit name is the grammatical subject, and the copy never uses emoji or exclamation marks. Personality: calm (차분한), plain-spoken (담백한), orderly (정갈한), quietly kind (은근히 다정한).
 
-<details>
-<summary>Superseded voice hypotheses — not current official guidance</summary>
+| Context | Tone | Example |
+|---|---|---|
+| Onboarding / first screen | Minimal; one line at most, learn by using | `습관 이름과 주기를 정해요.` |
+| Empty state | Say what will happen next, without urging | `습관을 만들면 여기에 칸이 생겨요.` |
+| Success / completion | Habit name as subject, only what happened | `조깅이 한 칸 채워졌어요.` |
+| Weekly wrap-up | Only what has gathered; never mention empty frames first | `이번 주는 사진 4장이 모였어요.` |
+| Monthly share card | The plain fact that the result exists | `이번 달 카드가 만들어졌어요.` |
+| Error / notice | What failed and the next action, one line | `사진을 불러오지 못했어요. 다시 시도해 주세요.` |
+| Push notification | Minimal; Sunday-night weekly wrap-up only, plus anything the user turned on | `이번 주는 사진 4장이 모였어요.` |
+| Landing / intro | Describe what it does; no slogan | `습관마다 사진으로 칸을 채우고, 한 주와 한 달을 돌아봐요.` |
 
-| Context | Tone |
-|---|---|
-| CTAs | Imperative, concrete outcome. `내 카드 찾기`, `대출 한도 확인하기`, `신청하기`. Never `시작하기 →` with an arrow flourish. |
-| Section headlines | Statement of fact, not a hook. `이번 달 지출 분석` not `이번 달, 얼마나 썼는지 보러 갈까요?`. |
-| Recommendations | Justified. Every recommended card or loan has a one-sentence reason next to it (`연 30만원 이상 절약될 수 있어요`). Never a bare ranked list. |
-| Financial figures | Bare numerals with commas. `1,240,000원`. Approximations (`약 124만원`) are forbidden on primary surfaces. |
-| Success messages | One-line confirmation + the relevant figure. `신용점수가 855점으로 올랐어요.` No emoji, no exclamation. |
-| Error / validation | Specific cause + one-line action. `주민등록번호가 일치하지 않아요. 다시 확인해주세요.` Never `오류가 발생했습니다`. |
-| Empty states | Explain the *why*, then suggest one next step. `아직 연동된 카드가 없어요. 카드를 연동하면 자동으로 지출 분석이 시작돼요.` |
-| Legal / disclosure | Formal `~합니다` endings. Pinned at the bottom of recommendation cards. Treated as part of the product, not a footer afterthought. |
-| Health-asset (DNA, screening) | Same calm advisor voice as finance. No marketing exuberance about "discovering your DNA". Just `이번 검사로 18가지 항목을 확인할 수 있어요`. |
+The attributes stay fixed and only the amount of words changes by context: errors lean on orderliness (fact plus next step), empty states lean slightly warmer. Action labels reuse PRODUCT.md feature names (e.g., 습관 만들기) and never use a pushing imperative.
 
-</details>
+**Words to use:** 칸, 채워졌어요, 모였어요, 만들어졌어요, 놓였어요, 생겨요, 이번 주 / 이번 달, 사진 ○장, 쉬는 날, 그대로.
 
-The table above is a historical hypothesis and is not promoted as an official writing standard. Current verified samples are:
+**Forbidden phrases:**
+- Scoring: 달성, 달성률, 부족해요, 분발
+- Streaks: 연속, 스트릭, 끊겼어요
+- Guilt: 포기, 실패, 못 했어요
+- Games and slogans: 챌린지, 미션, 클리어, 파이팅, 화이팅, Keep going, 갓생
+- Diary vocabulary: 소중한, 따뜻한, 포근한
+- Baby talk: 우쭈쭈, 최고예요, 대단해요
+- Pushing imperatives: `~하세요!`
+- One-word replies: `완료.`, `저장됨.`
+- Pointing at empty frames first: 빈 칸이에요, 비어 있어요
 
-No complete official voice-and-tone manual was found. Push notifications, authenticated errors, sentence-ending rules, and prohibited phrase lists remain unresolved.
+Voice samples above come from VOICE.md and are unverified planning copy for a service that has not shipped. Habit-name subjects need 이/가 particle handling in implementation.
 
 <!-- design-md:section governance -->
 ## 7. Governance
@@ -634,8 +693,36 @@ No complete official voice-and-tone manual was found. Push notifications, authen
 ### Agent Prompt Guide
 
 ### Quick Color Reference
-- Primary CTA: Salad Green (`#04c584`)
-- Hover: Hover Green (`#10df99`)
+- Accent: `#13bd7e`
+- Primary action fill: `#06a96c` (text `#ffffff`)
+- Canvas: `#ffffff`
+- Foreground: `#111111`
+- Secondary text: `#555c68` / neutral `#606874`
+- Muted metadata: `#9fa4b0`
+- Line: `#f0f2f5`
+- Neutral surface / skeleton: `#f5f5f5` (legacy measurement)
+- Error: `#fe493d` (legacy value)
+
+### Example Component Prompts
+- "Create the primary action: full width, `#06a96c` background, `#ffffff` text, 16px radius, 16px 20px padding, 56px tall, Pretendard 16px/700. Hover adds a black overlay at 0.04 opacity; the fill does not change. Label with a feature name such as 습관 만들기."
+- "Compose a habit strip on a white canvas: 24px containers with a 1px `#f0f2f5` border, flat frames with no shadow, photos supplying all the color, 안 한 날 and 쉬는 날 in neutral tones (never red or orange)."
+- "Write feedback copy: habit name as subject, everyday polite Korean, no emoji, no exclamation mark — for example `조깅이 한 칸 채워졌어요.`"
+
+### Iteration Guide
+1. **Photos carry the color; the accent appears once per screen.** Never use it as a fill or decoration.
+2. **Radius is role-specific: 6 / 16 / 24px.** If the AI produces 2px corners, reject — that is the superseded default.
+3. **Body is 400, decisions are 700.** Headings and the primary action use 700; paragraphs never do.
+4. **Shadows are neutral and single-layer; frames on the board are flat.**
+5. **Empty and skipped frames are neutral, never an error color.**
+6. **Pretendard with the full Korean fallback stack.** No BM JUA.
+7. **Copy follows Voice & Tone.** No emoji, no exclamation marks, no forbidden phrases.
+
+<details>
+<summary>Superseded legacy guide — uses values that predate the current tokens, kept for audit history</summary>
+
+### Quick Color Reference
+- Primary CTA: Legacy Accent Green (`#04c584`)
+- Hover: Legacy Hover Green (`#10df99`)
 - Page background: White (`#ffffff`)
 - Surface alt: Off-white (`#fbfbfb`)
 - Neutral surface: (`#f5f5f5`)
@@ -650,14 +737,14 @@ No complete official voice-and-tone manual was found. Push notifications, authen
 - Warning: `#fd8700` / `#f56200`
 
 ### Example Component Prompts
-- "Create a Banksalad-style primary CTA: `#04c584` background, white text, 2px border-radius (not 12px), 700-weight Pretendard at 16px, 12px 24px padding, 42px height. Hover lightens to `#10df99`."
+- "Create a the reference-style primary CTA: `#04c584` background, white text, 2px border-radius (not 12px), 700-weight Pretendard at 16px, 12px 24px padding, 42px height. Hover lightens to `#10df99`."
 - "Design a card-recommendation row: white background, 1px solid `#e1e1e1` border, 2px radius, 20px 24px padding, shadow `0 2px 5px rgba(0,0,0,.12)`. Card logo 32px left, title 16px/700 `#2b2b2b`, three filter chips below (`#f3fdfa` bg, `#04c584` text, 41px radius, 12px/500), annual-fee figure right-aligned 18px/700 with '원' suffix in 500."
 - "Build a focused amount input: 2px border `#f5f5f5`, on focus border `#10df99` and background `#f3fdfa`. Text 22px/700 right-aligned, `#2b2b2b`, won unit in 500 weight following the digits."
 - "Create a data chart: white background, axis labels 10px/500 `#7b7b7b`, gridlines 1px dashed `#e1e1e1`. Series 1 `#34464b`, series 2 `#5c818a`, series 3 `#1c6c73`. User's own data point in `#04c584` to make 'your value' pop against neutral teal-slate."
 - "Design a transaction table row: alternating `#ffffff` / `#fbfbfb` background, 12px 16px padding, 1px solid `#e1e1e1` bottom border. Date column 14px/500 `#7b7b7b`, merchant 14px/500 `#434444`, amount right-aligned 14px/700 — `#2b2b2b` for positive, `#fe493d` for negative."
 
 ### Iteration Guide
-1. **Default radius is 2px.** If the AI produces 12px or 16px corners, reject — that's Toss, not Banksalad.
+1. **Default radius is 2px.** If the AI produces 12px or 16px corners, reject — that's Toss, not the reference.
 2. **Default weight is 700 for anything important.** Headings, CTAs, financial amounts. 500 for body. Never 400 for body.
 3. **Green is for interaction only.** Never use `#04c584` as a generic background fill or decorative element. It always means: the user can tap this, or this is the user's own data.
 4. **Hover lightens.** `#04c584` → `#10df99` on hover (the opposite of conventional darken-on-hover). This is a signature.
@@ -665,13 +752,16 @@ No complete official voice-and-tone manual was found. Push notifications, authen
 6. **Chart series are teal-slate, not green.** `#34464b` / `#5c818a` / `#1c6c73` / `#a7c7cf`. Reserve green for the user's own data point.
 7. **Pretendard is non-negotiable.** Always include the full Korean fallback stack. Jua only for marketing display.
 
+</details>
+
+
 <!-- design-md:claim authority kind=evidence-backed-reconstruction lang=en -->
 
 ### Authority
 
 
 
-This document is an evidence-backed reconstruction, not authority for an unrelated target project.
+This document adapts an evidence-backed reconstruction of a reference design system (Banksalad) for 데일리롤 (Daily Roll); it is not authority for an unrelated target project.
 
 <!-- design-md:claim-end -->
 
