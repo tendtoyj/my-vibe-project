@@ -1,0 +1,107 @@
+@import 'pretendard/dist/web/variable/pretendardvariable.css';
+@import 'tailwindcss';
+
+/* DESIGN.md 토큰 그대로 */
+@theme {
+  --font-sans: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui,
+    'Segoe UI', Roboto, 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+
+  --color-accent: #13bd7e;
+  --color-accent-strong: #06a96c;
+  --color-fg: #111111;
+  --color-fg-2: #555c68;
+  --color-fg-3: #606874;
+  --color-muted: #9fa4b0;
+  --color-canvas: #ffffff;
+  --color-line: #f0f2f5;
+  --color-error: #fe493d;
+
+  --radius-chip: 6px;
+  --radius-action: 16px;
+  --radius-container: 24px;
+
+  --shadow-sheet: 0 4px 9px rgba(0, 0, 0, 0.15);
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--color-canvas);
+  color: var(--color-fg);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+/* 컨트롤은 즉시 바뀐다 (DESIGN: transition 0s) */
+button,
+input {
+  transition: none;
+}
+
+/* 주요 버튼: hover/pressed는 검은 오버레이 0.04 */
+.btn-primary {
+  position: relative;
+  height: 56px;
+  width: 100%;
+  padding: 16px 20px;
+  border: 0;
+  border-radius: var(--radius-action);
+  background: var(--color-accent-strong);
+  color: #fff;
+  font-size: 16px;
+  line-height: 26px;
+  font-weight: 700;
+  letter-spacing: -0.08px;
+}
+.btn-primary::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: #000;
+  opacity: 0;
+}
+.btn-primary:hover::after,
+.btn-primary:active::after,
+.btn-primary[aria-busy='true']::after {
+  opacity: 0.04;
+}
+.btn-primary:disabled {
+  background: var(--color-line);
+  color: var(--color-muted);
+  cursor: default;
+}
+.btn-primary:disabled::after {
+  display: none;
+}
+
+.btn-secondary {
+  height: 56px;
+  width: 100%;
+  padding: 16px 20px;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-action);
+  background: #fff;
+  color: var(--color-fg);
+  font-weight: 700;
+  line-height: 26px;
+  letter-spacing: -0.08px;
+}
+.btn-secondary:hover,
+.btn-secondary:active {
+  background: #fafbfc;
+}
