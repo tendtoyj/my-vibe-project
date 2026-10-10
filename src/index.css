@@ -107,3 +107,11 @@ body {
 .btn-secondary:active {
   background: #fafbfc;
 }
+
+/* 가로 스크롤은 되지만 막대는 보이지 않게 */
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
