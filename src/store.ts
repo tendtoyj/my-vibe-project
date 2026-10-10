@@ -7,9 +7,9 @@ export type Cycle =
   | { type: 'weekly'; n: number }
   | { type: 'days'; days: number[] } // 0=월 … 6=일
 
-export type Habit = { id: string; name: string; cycle: Cycle }
+export type Habit = { id: string; name: string; emoji?: string; cycle: Cycle }
 export type Frame = { kind: 'photo'; src: string } | { kind: 'check' }
-export type Draft = { name: string; cycleType: Cycle['type']; n: number; days: number[] }
+export type Draft = { name: string; emoji?: string; cycleType: Cycle['type']; n: number; days: number[] }
 export type Screen = 'create' | 'home'
 
 type State = {

@@ -79,7 +79,7 @@ export default function Home() {
                   className="sticky mb-2 w-fit text-[16px] leading-[26px] font-bold"
                   style={{ left: PAD }}
                 >
-                  {h.name}
+                  {h.emoji ? `${h.emoji} ` : ''}{h.name}
                 </h2>
                 <div className="flex" style={{ paddingLeft: PAD, paddingRight: PAD, gap: GAP }}>
                   {days.map((d) => {
